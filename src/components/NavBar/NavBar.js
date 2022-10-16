@@ -1,23 +1,24 @@
 import styles from './NavBar.module.scss';
 import 'font-awesome/css/font-awesome.min.css';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
 
   return (
     <nav className={styles.navBar}>
-        <div className={styles.navBarWrapper}>
-          <div>
-            <a href='/'>
-              <span className='fa fa-th-list'></span>
-            </a> 
-          </div>
-
-          <div>
-            <a href='/'>Home</a>
-            <a href='/favorite'>Favorite</a>
-            <a href='/about'>About</a>
-          </div>
+      <div className={styles.navBarWrapper}>
+        <div>
+          <a href='/'>
+            <span className='fa fa-th-list'></span>
+          </a> 
         </div>
+
+        <div>
+          <NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined} to="/">Home</NavLink>
+          <NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined} to="/about">About</NavLink>
+          <NavLink className={({ isActive }) => isActive ? styles.linkActive : undefined} to="/favorite">Favorite</NavLink>
+        </div>
+      </div>
     </nav>
   );
 }
