@@ -5,26 +5,32 @@ import { strContains } from '../utils/strContains';
 
 //selectors
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
-  .filter(card => card.columnId === columnId && strContains(card.title, searchString.searchString));
+  .filter(card => card.columnId === columnId && strContains(card.title, searchString));
 
-export const getAllColumns = (state) => {
-  return state.columns;
-}
+export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
+
+export const getColumnsByList = ({ columns }, listId) => columns
+  .filter(column => column.listId === listId);
+
+export const getAllLists = (state) => state.lists;
 
 // action creators
-export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
-export const addCard = payload => ({ type: 'ADD_CARD', payload });
-export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
+export const addList = payload => ({ type: 'ADD_LIST', payload });
+export const addColumn = payload => ({ type: 'ADD_COLUMN_ACTION', payload });
+export const addCard = payload => ({ type: 'ADD_CARD_ACTION', payload });
+export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING_ACTION', payload });
 
 const reducer = (state, action) => {
 
   switch(action.type) {
-    case 'ADD_COLUMN':
-      return { ...state, columns: [...state.columns, { id: shortid(), ...action.payload }]};
-    case 'ADD_CARD':
+    case 'ADD_COLUMN_ACTION':
+      return { ...state, columns: [...state.columns, {id: shortid(), ...action.payload}]};
+    case 'ADD_CARD_ACTION':
       return {...state, cards: [...state.cards, { id: shortid(), ...action.payload }]};
-    case 'UPDATE_SEARCHSTRING':
+    case 'UPDATE_SEARCHSTRING_ACTION':
       return { ...state, searchString: action.payload };;
+    case 'ADD_LIST':
+      return {...state, lists: [...state.lists, {id: shortid(), ...action.payload}]};
     default:
       return state;
   }

@@ -1,9 +1,8 @@
 import PageTitle from '../PageTitle/PageTitle';
 
-
 const NoMatch = () => {
   return (
-    <PageTitle>404 not found</PageTitle>
+    <PageTitle>Error 404. Page not found</PageTitle>
   );
 }
 
