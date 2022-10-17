@@ -24,8 +24,13 @@
 
 .cards {
   padding: math.div($base-size, 2) 0;
+
   span {
     color: gold;
+  }
+  
+  button:last-child {
+    display: none;
   }
 }
 

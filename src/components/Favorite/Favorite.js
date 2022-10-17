@@ -2,14 +2,14 @@ import styles from './Favorite.module.scss'
 import Container from '../Container/Container';
 import PageTitle from '../PageTitle/PageTitle';
 import { useSelector } from 'react-redux';
-import { getFilteredFavoriteCards } from '../../redux/store';
+import { getFilteredFavoriteCards } from '../../redux/cardsReducer';
 import Card from '../Card/Card';
 
 const Favorite = () => {
 
   const favoriteCards = useSelector(state => getFilteredFavoriteCards(state));
 
-  if(favoriteCards.length === 0) return <PageTitle>No favorite cards</PageTitle>
+  if(!favoriteCards.length) return <PageTitle>No favorite cards</PageTitle>
 
   return (
     <div>
